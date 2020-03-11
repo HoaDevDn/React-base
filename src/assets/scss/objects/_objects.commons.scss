@@ -1,0 +1,143 @@
+html {
+  overflow-y: hidden !important;
+}
+
+body {
+  font-family: $font_base;
+  font-size: $base_font_size;
+  color: $color_black_main;
+  overflow: hidden;
+}
+
+div,
+ul,
+textarea {
+  &::-webkit-scrollbar {
+    @include size(5px);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: gray;
+  }
+}
+
+.o-float-above {
+  position: relative;
+
+  &::before {
+    content: '';
+    @include size(100%);
+    @include position(absolute, 0, '', '', 0);
+    background: transparent;
+    cursor: pointer;
+  }
+}
+
+[data-title-top],
+[data-title-bottom] {
+  position: relative;
+
+  &:hover:after,
+  &:hover:before {
+    @include transition(0.2s);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &:after {
+    padding: 1px 8px;
+    color: $color_white;
+    white-space: nowrap;
+    border-radius: 2px;
+    background: #474747;
+    opacity: 0;
+    visibility: hidden;
+    line-height: 20px;
+  }
+
+  &::before {
+    content: ' ';
+    opacity: 0;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+  }
+}
+
+[data-title-top] {
+  &:after {
+    content: attr(data-title-top);
+    @include position(absolute, '', '', calc(100% + 7px), -10px, 99999);
+  }
+
+  &::before {
+    @include position(absolute, -7px, '', '', 50%);
+    border-color: #474747 transparent transparent transparent;
+  }
+}
+
+[data-title-bottom] {
+  &:after {
+    content: attr(data-title-bottom);
+    @include position(absolute, 130%, '', '', -10px, 99999);
+  }
+
+  &::before {
+    @include position(absolute, '', '', -30%, 50%);
+    border-color: transparent transparent #474747 transparent;
+  }
+}
+
+.o-title-bottom {
+  &[data-title-top] {
+    &:after {
+      bottom: -25px !important;
+    }
+
+    &:before {
+      top: 14px !important;
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.o-custom-scroll {
+  &::-webkit-scrollbar {
+    @include size(3px, 10px);
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px #fff;
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #dee3e3;
+    border-radius: 3px;
+    height: 27px;
+  }
+}
+
+.o-scroll-hover {
+  &::-webkit-scrollbar {
+    @include size(5px);
+    @include transition(all 2s ease);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 5px;
+  }
+
+  &:hover {
+    &::-webkit-scrollbar-thumb {
+      background: #cdcdcd87;
+    }
+  }
+}
+
+.o-btn-text {
+  background: none;
+  border: 0;
+  padding: 0;
+}

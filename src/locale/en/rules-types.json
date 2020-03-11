@@ -1,0 +1,8 @@
+{
+  "rules": {
+    "required": "is required"
+  },
+  "types": {
+    "email": "is not valid"
+  }
+}

@@ -1,0 +1,13 @@
+.c-main-admin {
+  height: 100vh;
+
+  .ant-layout-header {
+    height: 50px;
+    background: $color_yellow_main;
+  }
+
+  .ant-menu-horizontal {
+    background: $color_yellow_main;
+    text-align: left;
+  }
+}

@@ -1,0 +1,155 @@
+@charset "utf-8";
+
+// breakpoint settings ------------------------------
+@mixin bp($bp_1, $bp_2: 0) {
+  $bp_main: 768;
+
+  @if $bp_1 == 'sp' {
+    @media (max-width: #{$bp_main}px) {
+      @content;
+    }
+  } @else if $bp_1 == 'pc' {
+    @media (min-width: #{$bp_main + 1}px) {
+      @content;
+    }
+  } @else {
+    @if $bp_1 != 0 and $bp_2 != 0 {
+      @media (min-width: $bp_1) and (max-width: $bp_2) {
+        @content;
+      }
+    } @else if $bp_1 == 0 {
+      @media (max-width: $bp_2) {
+        @content;
+      }
+    } @else if $bp_2 == 0 {
+      @media (min-width: $bp_1) {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin bpHorizontal($bp_1, $bp_2: 0) {
+  @if $bp_1 != 0 and $bp_2 != 0 {
+    @media (min-height: $bp_1) and (max-height: $bp_2) {
+      @content;
+    }
+  } @else if $bp_1 == 0 {
+    @media (max-height: $bp_2) {
+      @content;
+    }
+  } @else if $bp_2 == 0 {
+    @media (min-height: $bp_1) {
+      @content;
+    }
+  }
+}
+
+// common mixins ------------------------------
+@mixin clearfix {
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+@mixin transition($options: 0.2s all ease) {
+  -webkit-transition: ($options);
+  transition: ($options);
+}
+
+@mixin transform($options) {
+  -webkit-transform: ($options);
+  transform: ($options);
+}
+
+@mixin animation($options) {
+  -webkit-animation: ($options);
+  animation: ($options);
+}
+
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin posCenter() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+@mixin posCenterX() {
+  @include transform(translateX(-50%));
+  position: absolute;
+  left: 50%;
+}
+
+@mixin posCenterY() {
+  @include transform(translateY(-50%));
+  position: absolute;
+  top: 50%;
+}
+
+@mixin position($p, $top, $right, $bottom, $left, $zindex: 1) {
+  position: $p;
+  @if $top != '' {
+    top: $top;
+  }
+  @if $right != '' {
+    right: $right;
+  }
+  @if $bottom != '' {
+    bottom: $bottom;
+  }
+  @if $left != '' {
+    left: $left;
+  }
+  z-index: $zindex;
+}
+
+@mixin wordBreak() {
+  word-break: break-all;
+  word-break: break-word;
+}
+
+@mixin font($size: 0, $fw: 0, $color: 0, $under: 0, $up: 0, $line: 0) {
+  @if $size != 0 {
+    font-size: $size;
+  }
+  @if $fw != 0 {
+    font-weight: $fw;
+  }
+  @if $color != 0 {
+    color: $color;
+  }
+  @if $under != 0 {
+    text-decoration: underline;
+  }
+  @if $up != 0 {
+    text-transform: uppercase;
+  }
+  @if $line != 0 {
+    line-height: $line;
+  }
+}
+
+@mixin size($width, $height: '') {
+  @if $height == '' {
+    height: $width;
+  } @else {
+    height: $height;
+  }
+
+  width: $width;
+}
+
+@mixin subText($width) {
+  max-width: $width;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

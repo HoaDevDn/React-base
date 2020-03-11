@@ -1,0 +1,113 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 100px;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  color: white;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.c-home-page {
+  height: 100vh;
+  overflow: auto;
+
+  .btn-logout {
+    border: 0;
+    color: #282c34;
+    padding: 5px 10px;
+    margin: 10px;
+    border-radius: 3px;
+  }
+}
+
+.c-user-table {
+  margin: 20px 0px;
+
+  th {
+    padding: 10px;
+  }
+
+  td {
+    border: 1px solid white;
+    padding: 5px 30px;
+  }
+}
+
+.c-user-info {
+  width: 300px;
+  margin: 30px;
+  text-align: left;
+}
+
+.c-change-language {
+  @include position(fixed, 20px, 20px, '', '');
+
+  button {
+    border: 0px;
+    background: $bg_white;
+    color: $color_black;
+    padding: 5px 10px;
+    margin: 0px 10px;
+    border-radius: 3px;
+  }
+}
+
+.c-land-form {
+  @include position(fixed, 50%, '', '', 50%);
+  @include transform(translateX(-50%) translatey(calc(-50% - 70px)));
+  text-align: left;
+  max-width: 300px;
+  width: 100%;
+
+  .c-land-form__option {
+    display: flex;
+    margin-top: 5px;
+    justify-content: space-between;
+
+    button {
+      margin-left: 4px;
+      color: $color_blue_main;
+    }
+  }
+  .c-land-form__button {
+    width: 100%;
+  }
+}
+
+#components-layout-demo-top-side-2 .logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px 28px 16px 0;
+  float: left;
+}
+
+.site-layout-background {
+  background: #fff;
+}

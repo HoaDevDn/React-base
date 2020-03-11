@@ -1,0 +1,24 @@
+// settings
+@import 'settings/_settings.global';
+@import 'settings/_settings.colors';
+
+// tools
+@import 'tools/_tools.mixins';
+
+// generic
+@import 'generic/_generic.normalize';
+@import 'generic/_generic.box-sizing';
+@import 'generic/_generic.reset';
+
+// elements
+@import 'elements/_elements.commons';
+
+// objects
+@import 'objects/_objects.commons';
+@import 'objects/_objects.animations';
+
+// Component
+@import 'components/index.scss';
+
+// Utilities
+@import 'utilities/_utilities.commons';

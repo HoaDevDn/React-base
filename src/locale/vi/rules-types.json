@@ -1,0 +1,8 @@
+{
+  "rules": {
+    "required": "là bắt buộc"
+  },
+  "types": {
+    "email": "không hợp lệ"
+  }
+}
