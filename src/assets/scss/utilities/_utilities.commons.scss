@@ -1,0 +1,85 @@
+.u-inline {
+  display: inline !important;
+}
+
+.u-inline-block {
+  display: inline-block !important;
+}
+
+.u-block {
+  display: block !important;
+}
+
+.u-flex {
+  display: flex !important;
+}
+
+.u-space-between {
+  justify-content: space-between;
+}
+
+.u-text-center {
+  text-align: center !important;
+}
+
+.u-text-right {
+  text-align: right !important;
+}
+
+.u-text-left {
+  text-align: left !important;
+}
+
+.u-float-left {
+  float: left !important;
+}
+
+.u-float-right {
+  float: right !important;
+}
+
+.u-position-relative {
+  position: relative !important;
+}
+
+.u-position-absolute {
+  position: absolute !important;
+}
+
+.u-pointer {
+  cursor: pointer !important;
+}
+
+.u-hidden {
+  display: none !important;
+}
+
+.u-full-width {
+  width: 100% !important;
+}
+
+.u-clearfix {
+  @include clearfix;
+}
+
+.u-sub-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.u-text-bold {
+  font-weight: $fw_bold;
+}
+
+.u-cursor-default {
+  cursor: default !important;
+}
+
+.u-border-rounded {
+  border-radius: 100px !important;
+}
+
+.u-pointer-prevent {
+  pointer-events: none !important;
+}

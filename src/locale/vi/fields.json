@@ -1,0 +1,7 @@
+{
+  "fields": {
+    "email": "Địa chỉ email",
+    "password": "Mật khẩu",
+    "passwordConfirm": "Xác nhận mật khẩu"
+  }
+}

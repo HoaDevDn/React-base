@@ -1,0 +1,7 @@
+{
+  "fields": {
+    "email": "The email address",
+    "password": "The password",
+    "passwordConfirm": "The password confirm"
+  }
+}
