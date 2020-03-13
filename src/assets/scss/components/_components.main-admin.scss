@@ -18,7 +18,6 @@
 
 .c-logo {
   @include size(120px, 31px);
-  background: $bg_black_main;
   margin: 16px 28px 16px 0;
   float: left;
 }
@@ -29,6 +28,14 @@
   margin: 0;
   min-height: 280px;
   width: 100%;
+
+  .c-table-user__seach {
+    text-align: right;
+
+    .box {
+      width: 320px;
+    }
+  }
 
   .img-avatar {
     @include size(30px);

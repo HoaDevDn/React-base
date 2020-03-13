@@ -15,7 +15,7 @@ const userService = new UserService();
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 const { Content } = Layout;
 
-class Home extends React.Component {
+class Users extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -182,7 +182,7 @@ class Home extends React.Component {
   }
 }
 
-Home.propTypes = {
+Users.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func }).isRequired,
   user: PropTypes.shape({ email: PropTypes.string }).isRequired,
   i18n: PropTypes.shape({ changeLanguage: PropTypes.func }).isRequired,
@@ -196,4 +196,4 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({ logout }, dispatch);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(Home));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(Users));
