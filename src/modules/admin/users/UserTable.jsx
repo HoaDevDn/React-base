@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withTranslation } from 'react-i18next';
-import { Layout, Table, Button } from 'antd';
-import { logout } from 'modules/auth/auth.actions';
+import { Layout, Table, Button, Input } from 'antd';
 
+import { logout } from 'modules/auth/auth.actions';
+import dataSource from './User-data.faker';
+
+const { Search } = Input;
 const { Content } = Layout;
 
-class Home extends React.Component {
+class UserTable extends React.Component {
   onLogout = async () => {
     const callbackSuccess = () => {
       window.location.href = `${window.location.href}login`;
@@ -24,10 +27,10 @@ class Home extends React.Component {
   render() {
     const columns = [
       {
-        title: 'Avatar1',
+        title: 'Avatar',
         dataIndex: 'avatar',
         key: 'avatar',
-        render: (text, record) => <img className="img-avatar" src={record.src} alt="" />,
+        render: (_text, record) => <img className="img-avatar" src={record.src} alt="" />,
       },
       { title: 'Name', dataIndex: 'name', key: 'name' },
       { title: 'Age', dataIndex: 'age', key: 'age' },
@@ -40,49 +43,17 @@ class Home extends React.Component {
       },
     ];
 
-    const data = [
-      {
-        key: 1,
-        src: 'https://gamek.mediacdn.vn/2019/4/10/photo-1-15548916376021451799217.jpg',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        description: 'My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.',
-      },
-      {
-        key: 2,
-        src: 'https://st.quantrimang.com/photos/image/2019/07/31/hinh-nen-17.jpg',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-        description: 'My name is Jim Green, I am 42 years old, living in London No. 1 Lake Park.',
-      },
-      {
-        key: 3,
-        src: 'https://img.thuthuatphanmem.vn/uploads/2018/10/16/anh-dep-luffy-be_101532746.jpg',
-        name: 'Not Expandable',
-        age: 29,
-        address: 'Jiangsu No. 1 Lake Park',
-        description: 'This not expandable',
-      },
-      {
-        key: 4,
-        src: 'https://anhnendep.net/wp-content/uploads/2018/11/hinh-nen-luffy-gear-4-one-piece-hd-10.jpg',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-        description: 'My name is Joe Black, I am 32 years old, living in Sidney No. 1 Lake Park.',
-      },
-    ];
-
     return (
       <Content className="c-table-user">
+        <div className="c-table-user__seach">
+          <Search className="box" placeholder="Search..." />
+        </div>
         <Table
           columns={columns}
           expandable={{
             expandedRowRender: record => <p>{record.description}</p>,
           }}
-          dataSource={data}
+          dataSource={dataSource}
         />
         <Button type="secondary" className="btn-logout" onClick={this.onLogout}>
           Logout
@@ -92,7 +63,7 @@ class Home extends React.Component {
   }
 }
 
-Home.propTypes = {
+UserTable.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func }).isRequired,
   user: PropTypes.shape({ email: PropTypes.string }).isRequired,
   i18n: PropTypes.shape({ changeLanguage: PropTypes.func }).isRequired,
@@ -105,4 +76,4 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({ logout }, dispatch);
 
-export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(Home));
+export default withTranslation()(connect(mapStateToProps, mapDispatchToProps)(UserTable));
