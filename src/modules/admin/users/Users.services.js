@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
 import BaseGraphQL from 'services/graphQL/base';
-import { MUTATE_CREATE_USER } from './Home.graphql-tag';
+import { MUTATE_CREATE_USER } from './Users.graphql-tag';
 
 export default class Auth extends BaseGraphQL {
   constructor() {
