@@ -3,16 +3,17 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withTranslation } from 'react-i18next';
-import { Button, Spin } from 'antd';
+import { Button, Spin, Layout } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
 import { logout } from 'modules/auth/auth.actions';
 import { rConfig } from 'configs';
 import logo from 'logo.svg';
-import UserService from './Home.services';
+import UserService from './Users.services';
 
 const userService = new UserService();
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+const { Content } = Layout;
 
 class Home extends React.Component {
   constructor() {
@@ -107,74 +108,76 @@ class Home extends React.Component {
     } = this.props;
 
     return (
-      <div className="c-home-page">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>Your Email: {email}</p>
-          {this.state.isLoadingGetInfo ? (
-            <Spin indicator={antIcon} />
-          ) : (
-            <>
-              {this.state.userInfo ? (
-                <div className="c-user-info">
-                  <p>User Info</p>
-                  <p>id: {this.state.userInfo.id}</p>
-                  <p>email: {this.state.userInfo.email}</p>
-                </div>
-              ) : (
-                ''
-              )}
-            </>
-          )}
-          <table className="c-user-table">
-            <thead>
-              <tr>
-                <th>{t('homePage.name')}</th>
-                <th>{t('homePage.option')}</th>
-                <th>{t('homePage.option')}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.listUsers.map(item => (
-                <tr key={item.id}>
-                  <td>{item.name}</td>
-                  <td>
-                    <Button type="secondary" className="btn-logout" onClick={() => this.getUser(item.id)}>
-                      Get info
-                    </Button>
-                  </td>
-                  <td>
-                    <button className="btn-logout" type="button" onClick={() => this.deleteUser(item.id)}>
-                      Delete user
-                    </button>
-                  </td>
+      <Content className="c-table-user">
+        <div className="c-home-page">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <p>Your Email: {email}</p>
+            {this.state.isLoadingGetInfo ? (
+              <Spin indicator={antIcon} />
+            ) : (
+              <>
+                {this.state.userInfo ? (
+                  <div className="c-user-info">
+                    <p>User Info</p>
+                    <p>id: {this.state.userInfo.id}</p>
+                    <p>email: {this.state.userInfo.email}</p>
+                  </div>
+                ) : (
+                  ''
+                )}
+              </>
+            )}
+            <table className="c-user-table">
+              <thead>
+                <tr>
+                  <th>{t('homePage.name')}</th>
+                  <th>{t('homePage.option')}</th>
+                  <th>{t('homePage.option')}</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-          <div className="c-change-language">
-            <button type="button" onClick={() => this.changeLang(rConfig.lang.en)}>
-              EN
-            </button>
-            <button type="button" onClick={() => this.changeLang(rConfig.lang.vi)}>
-              VN
-            </button>
-          </div>
-          <div className="u-flex">
-            <Button
-              type="secondary"
-              className="btn-logout"
-              onClick={this.addInfo}
-              loading={this.state.isLoadingAddUser}
-            >
-              Add User
-            </Button>
-            <button className="btn-logout" type="button" onClick={this.onLogout}>
-              Logout
-            </button>
-          </div>
-        </header>
-      </div>
+              </thead>
+              <tbody>
+                {this.state.listUsers.map(item => (
+                  <tr key={item.id}>
+                    <td>{item.name}</td>
+                    <td>
+                      <Button type="secondary" className="btn-logout" onClick={() => this.getUser(item.id)}>
+                        Get info
+                      </Button>
+                    </td>
+                    <td>
+                      <button className="btn-logout" type="button" onClick={() => this.deleteUser(item.id)}>
+                        Delete user
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <div className="c-change-language">
+              <button type="button" onClick={() => this.changeLang(rConfig.lang.en)}>
+                EN
+              </button>
+              <button type="button" onClick={() => this.changeLang(rConfig.lang.vi)}>
+                VN
+              </button>
+            </div>
+            <div className="u-flex">
+              <Button
+                type="secondary"
+                className="btn-logout"
+                onClick={this.addInfo}
+                loading={this.state.isLoadingAddUser}
+              >
+                Add User
+              </Button>
+              <button className="btn-logout" type="button" onClick={this.onLogout}>
+                Logout
+              </button>
+            </div>
+          </header>
+        </div>
+      </Content>
     );
   }
 }

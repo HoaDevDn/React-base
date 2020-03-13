@@ -10,4 +10,37 @@
     background: $color_yellow_main;
     text-align: left;
   }
+
+  .c-main-admin__layout {
+    padding: 24px;
+  }
+}
+
+.c-logo {
+  @include size(120px, 31px);
+  background: $bg_black_main;
+  margin: 16px 28px 16px 0;
+  float: left;
+}
+
+.c-table-user {
+  background: $bg_white;
+  padding: 24px;
+  margin: 0;
+  min-height: 280px;
+  width: 100%;
+
+  .img-avatar {
+    @include size(30px);
+    border-radius: 100px;
+  }
+}
+
+.c-header-menu {
+  line-height: 50px !important;
+}
+
+.c-sider-menu {
+  height: 100%;
+  border: 0px;
 }

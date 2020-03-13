@@ -17,7 +17,12 @@ class App extends React.Component {
   componentDidMount() {
     if (!this.props.user) {
       const setUserStore = currentUser => {
-        if (currentUser && currentUser.emailVerified) this.props.setUser(currentUser);
+        localStorage.setItem('isLogin', 0);
+
+        if (currentUser && currentUser.emailVerified) {
+          localStorage.setItem('isLogin', 1);
+          this.props.setUser(currentUser);
+        }
         this.setState({ isLoading: false });
       };
       this.authService.getAuth(setUserStore);
@@ -26,7 +31,7 @@ class App extends React.Component {
 
   render() {
     const { isLoading } = this.state;
-    return <div className="App">{isLoading ? <div>Loading...</div> : <SwitchRouter history={history} />}</div>;
+    return <div className="App">{isLoading ? '' : <SwitchRouter history={history} />}</div>;
   }
 }
 

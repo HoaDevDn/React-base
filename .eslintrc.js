@@ -37,11 +37,13 @@ module.exports = {
     'no-console': 'off',
     'no-use-before-define': 'off',
     'class-methods-use-this': 'off',
+    'prefer-promise-reject-errors': 'off',
     'react/jsx-one-expression-per-line': 'off',
     'react/prop-types': [1, { ignore: ['children'] }],
     'react/destructuring-assignment': [0, 'always', { ignoreClassFields: true }],
     'react/jsx-props-no-spreading': 'off',
     'prefer-promise-reject-errors': 'off',
+    'react/prefer-stateless-function': 'off',
     eqeqeq: 'off',
   },
 };
