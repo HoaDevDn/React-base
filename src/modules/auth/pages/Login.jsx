@@ -4,11 +4,13 @@ import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { withTranslation, useTranslation } from 'react-i18next';
 import { getRules } from 'helpers';
+import { toast } from 'react-toastify';
 
 function Login(props) {
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
 
+  toast('Welcome to login!');
   const onLogin = ({ email, password }) => {
     const callbackSuccess = user => {
       if (!user.emailVerified) {
