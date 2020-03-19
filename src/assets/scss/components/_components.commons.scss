@@ -99,3 +99,8 @@
     width: 100%;
   }
 }
+
+.c-loading-init {
+  @include position(fixed, 50%, '', '', 50%, 10);
+  @include transform(translate(-50%, -50%));
+}

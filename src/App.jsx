@@ -6,6 +6,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setUser as setUserAction } from 'modules/auth/auth.actions';
 import AuthService from 'modules/auth/auth.services';
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+
+const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 class App extends React.Component {
   constructor(props) {
@@ -26,7 +30,7 @@ class App extends React.Component {
 
   render() {
     const { isLoading } = this.state;
-    if (isLoading) return '';
+    if (isLoading) return <Spin className="c-loading-init" indicator={antIcon} size="large" />;
     return (
       <div className="App">
         <SwitchRouter history={history} user={this.props.user} />

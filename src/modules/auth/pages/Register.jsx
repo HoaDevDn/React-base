@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Checkbox, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { withTranslation, useTranslation } from 'react-i18next';
 import { getRules } from 'helpers';
@@ -11,17 +11,17 @@ function Register(props) {
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
 
-  const onRegister = async ({ email, password }) => {
+  const onRegister = async ({ email, name, password }) => {
     setIsLoading(true);
     try {
-      await authService.register(email, password);
+      await authService.register(email, name, password);
+      message.info('Please check your email to verify!');
       setTimeout(() => {
         redirectToLogin();
       }, 100);
     } catch (err) {
       setIsLoading(false);
-      // eslint-disable-next-line no-alert
-      alert(err.message);
+      if (err.message) message.error(err.message);
     }
   };
 
@@ -40,20 +40,27 @@ function Register(props) {
           alt=""
         />
       </div>
+      <Form.Item name="name" rules={[getRules(props, t('fields.name'), 'required')]}>
+        <Input
+          className="u-border-rounded"
+          placeholder="Name..."
+          prefix={<UserOutlined className="site-form-item-icon" />}
+        />
+      </Form.Item>
       <Form.Item
         name="email"
         rules={[getRules(props, t('fields.email'), 'email'), getRules(props, t('fields.email'), 'required')]}
       >
         <Input
           className="u-border-rounded"
-          placeholder="Username"
+          placeholder="Email..."
           prefix={<UserOutlined className="site-form-item-icon" />}
         />
       </Form.Item>
       <Form.Item name="password" rules={[getRules(props, t('fields.password'), 'required')]} hasFeedback>
         <Input.Password
           className="u-border-rounded"
-          placeholder="Password"
+          placeholder="Password..."
           prefix={<LockOutlined className="site-form-item-icon" />}
         />
       </Form.Item>
@@ -73,7 +80,7 @@ function Register(props) {
       >
         <Input.Password
           className="u-border-rounded"
-          placeholder="Confirm Password"
+          placeholder="Confirm Password..."
           prefix={<LockOutlined className="site-form-item-icon" />}
         />
       </Form.Item>

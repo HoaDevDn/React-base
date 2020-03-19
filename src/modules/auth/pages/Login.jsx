@@ -1,20 +1,18 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { withTranslation, useTranslation } from 'react-i18next';
 import { getRules } from 'helpers';
-import { toast } from 'react-toastify';
 
 function Login(props) {
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
 
-  toast('Welcome to login!');
   const onLogin = ({ email, password }) => {
     const callbackSuccess = user => {
       if (!user.emailVerified) {
-        console.log('Need to veriry email');
+        message.info('Please check your email to verify!', 3);
         setIsLoading(false);
         return;
       }
@@ -22,7 +20,8 @@ function Login(props) {
       props.history.push('/');
     };
 
-    const callbackFail = () => {
+    const callbackFail = error => {
+      if (error.message) message.error(error.message);
       setIsLoading(false);
     };
 
@@ -47,7 +46,7 @@ function Login(props) {
         <Input
           className="u-border-rounded"
           prefix={<UserOutlined className="site-form-item-icon" />}
-          placeholder="Username"
+          placeholder="Email..."
         />
       </Form.Item>
       <Form.Item name="password" rules={[getRules(props, t('fields.password'), 'required')]}>
@@ -55,7 +54,7 @@ function Login(props) {
           className="u-border-rounded"
           prefix={<LockOutlined className="site-form-item-icon" />}
           type="password"
-          placeholder="Password"
+          placeholder="Password..."
         />
       </Form.Item>
       <Form.Item>

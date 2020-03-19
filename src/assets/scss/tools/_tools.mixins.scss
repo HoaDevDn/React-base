@@ -94,7 +94,7 @@
   top: 50%;
 }
 
-@mixin position($p, $top, $right, $bottom, $left, $zindex: 1) {
+@mixin position($p, $top, $right, $bottom, $left, $zindex: 0) {
   position: $p;
   @if $top != '' {
     top: $top;

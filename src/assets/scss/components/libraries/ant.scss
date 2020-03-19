@@ -4,3 +4,11 @@
     font-size: $fs_13;
   }
 }
+
+.ant-message {
+  left: 50%;
+
+  > span {
+    @include transform(translateX(-50%));
+  }
+}

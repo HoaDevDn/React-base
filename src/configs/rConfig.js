@@ -3,4 +3,8 @@ export default {
     en: 'en',
     vi: 'vi',
   },
+  role: {
+    teacher: 'teacher',
+    learner: 'learner',
+  },
 };
