@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 
+const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 const NotFound = lazy(() => import('views/NotFound'));
 const HomeContainer = lazy(() => import('modules/admin/home/Home'));
 const RegisterContainer = lazy(() => import('modules/auth/pages/Register'));
@@ -17,8 +20,8 @@ function PublicRoute({ children, user, ...rest }) {
 
 function SwitchRouter({ user }) {
   return (
-    <BrowserRouter className="ssss">
-      <Suspense fallback={<div>Loading ...</div>}>
+    <BrowserRouter>
+      <Suspense fallback={<Spin className="c-loading-init" indicator={antIcon} size="large" />}>
         <Switch>
           <PublicRoute exact path={['/login', '/register']} user={user}>
             <Route path="/login" component={LoginContainer} />

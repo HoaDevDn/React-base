@@ -12,7 +12,7 @@ function* login(action) {
     if (user.emailVerified) yield put({ type: SET_USER, user });
     callbackSuccess(user);
   } catch (error) {
-    callbackFail();
+    callbackFail(error);
   }
 }
 
